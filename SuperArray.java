@@ -6,6 +6,10 @@ public class SuperArray {
     data = new String[10];
     size = 0;
   }
+  public SuperArray(int initialCapacity) {
+    data = new String[initialCapacity];
+    size = 0;
+  }
   public int size() {
     return size;
   }
@@ -30,10 +34,71 @@ public class SuperArray {
     return previous;
   }
   private void resize() {
-    String[] data2 = new String[size + 1];
+    double x = .5 * size;
+    String[] data2 = new String[size * (int)x];
     for (int i = 0; i < size; i++) {
       data2[i] = data[i];
     }
     data = data2;
+  }
+  public boolean isEmpty() {
+    return size == 0;
+  }
+  public void clear() {
+    String[] data2 = new String[data.length];
+    data = data2;
+    size = 0;
+  }
+  public String toString() {
+    if (size == 0) {
+      return "[]";
+    }
+    String returnString = "[";
+    for (int i = 0; i < size; i++) {
+      returnString = returnString + data[i] + ", ";
+    }
+    returnString = returnString.substring(0, returnString.length() - 2) + "]";
+    return returnString;
+  }
+  public boolean contains(String s) {
+    for (int i = 0; i < size; i++) {
+      if (data[i] == s) {
+        return true;
+      }
+    }
+    return false;
+  }
+  public void add(int index, String element) {
+    if (data.length == size) {
+      resize();
+    }
+    for (int i = size - 1; i >= index; i--) {
+      data[i + 1] = data[i];
+    }
+    data[index] = element;
+    size += 1;
+  }
+  public String remove(int index) {
+    String previous = data[index];
+    for (int i = index; i < size; i++) {
+      data[i] = data[i + 1];
+    }
+    size -= 1;
+    return previous;
+  }
+  public int indexOf(String s) {
+    for (int i = 0; i < size; i++) {
+      if (data[i].equals(s)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  public String[] toArray() {
+    String[] data2 = new String[size];
+    for (int i = 0; i < data2.length; i++) {
+      data2[i] = data[i];
+    }
+    return data2;
   }
 }
