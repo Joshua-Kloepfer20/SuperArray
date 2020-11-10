@@ -101,4 +101,33 @@ public class SuperArray {
     }
     return data2;
   }
+  public static void removeDuplicates(SuperArray s) {
+    for (int i = 0; i < s.size(); i++) {
+      for (int j = i + 1; j < s.size(); j++) {
+        if (s.get(i).equals(s.get(j))) {
+          s.remove(j);
+          j -= 1;
+        }
+      }
+    }
+  }
+  public int lastIndexOf(String value) {
+    for (int i = size - 1; i >= 0; i--) {
+      if (data[i].equals(value)) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  public boolean equals(SuperArray other) {
+    if (this.size() != other.size()) {
+      return false;
+    }
+    for (int i = 0; i < other.size(); i++) {
+      if (!this.get(i).equals(other.get(i))) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
