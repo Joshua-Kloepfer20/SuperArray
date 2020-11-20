@@ -8,7 +8,7 @@ public class SuperArray {
   }
   public SuperArray(int initialCapacity) {
     if (initialCapacity < 0) {
-      throw new illegalArgumentException("initialCapacity " + initialCapacity + " cannot be negative");
+      throw new IllegalArgumentException("initialCapacity " + initialCapacity + " cannot be negative");
     }
     data = new String[initialCapacity];
     size = 0;
@@ -30,7 +30,7 @@ public class SuperArray {
   }
   public String get(int index) {
     if (index < 0 || index >= size()) {
-      throw new IndexOutOfBoundsException("Cant get index " + Index);
+      throw new IndexOutOfBoundsException("Cant get index " + index);
     }
     return data[index];
   }
@@ -95,7 +95,7 @@ public class SuperArray {
       throw new IndexOutOfBoundsException("Cannot remove index " + index);
     }
     String previous = data[index];
-    for (int i = index; i < size; i++) {
+    for (int i = index; i < size - 1; i++) {
       data[i] = data[i + 1];
     }
     size -= 1;
